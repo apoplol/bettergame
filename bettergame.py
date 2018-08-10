@@ -4,7 +4,6 @@ from rps import rips
 # Edited by ye
 
 #variables
-
 #end variables
 
 #functions
@@ -25,10 +24,7 @@ def findRoom(rooms,curx,cury):
 	for room in rooms:
 		if curx == int(room[0]) and cury == int(room[1]):
 			roomFound = True
-	
 	return roomFound
-
-
 #end functions
 
 def game():
@@ -62,4 +58,3 @@ def game():
 ### Commented out rips to test coordinate system
 #rips()
 game()
-
