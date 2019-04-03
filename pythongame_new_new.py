@@ -4,6 +4,7 @@ from random import randint
 import time
 import os
 import sys
+import platform
 
 # GLOBALS
 xbound = 0
@@ -27,6 +28,16 @@ class Player:
         self.str = "hi"
 
 
+##GLOBAL HELPER FUNCTIONS
+
+# for ucuntu
+def clear():
+    if platform.system() == "Linux":
+        absolutely_unused_variable = os.system("clear")
+    elif platform.system() == "Windows":
+        absolutely_unused_variable = os.system("cls")
+
+
 ## Functions
 #create map array and return it
 def create_map(xbound,ybound):
@@ -44,9 +55,9 @@ def draw_map(map, playerLocation):
     numsPerRow = xbound
     numsInRow = 1
 
-    for room in map:
+    for i in range(0,len(map)):
         item = "Z"
-        if room.x == playerLocation.x and room.y == playerLocation.y:
+        if map[i].x == playerLocation.x and map[i].y == playerLocation.y:
             item = "X"
         else:
             item = "O"
@@ -65,12 +76,13 @@ def show_manual():
     print("read the fucking manual")
     print("_______________________")
     print("movement:")
-    print("  w: forward")
-    print("  s: backward")
+    print("  w: up")
+    print("  s: down")
     print("  a: left")
     print("  d: right")
     print("man: show manual")
     print("map: show map")    
+    print("q: quit")
     #TODO: "inventory system"
 
 #TODO: Pass in a map object/array and check inside of that
@@ -87,10 +99,10 @@ def move(direction, cur):
     #print("ybound: " +str(ybound))    
     newCur = cur
     if direction in "wasd":
-        if direction == 'w' and cur.y < ybound:
-            newCur.y += 1
-        elif direction == 's' and cur.y > 0:
+        if direction == 'w' and cur.y > 0:
             newCur.y -= 1
+        elif direction == 's' and cur.y < ybound:
+            newCur.y += 1
         elif direction == 'a' and cur.x > 0:
             newCur.x -= 1
         elif direction == 'd' and cur.x < xbound:
